@@ -1,7 +1,7 @@
 # Kubernetes Ingress Nginx Plugins
 
 ## Plugins List
-1. hello_world - https://github.com/kubernetes/ingress-nginx/tree/master/rootfs/etc/nginx/lua/plugins/hello_world
+1. rewrite_forwarding_headers
 
 
 ## Adding Custom Plugin to Ingress-Nginx in Kubernetes
@@ -79,7 +79,7 @@ To load the Lua plugin, we need to specify a comma-separated list of the order o
 ingress-nginx:
   controller:
     config:
-      plugins: "hello_world"
+      plugins: "rewrite_forwarding_headers"
 ```
 
 In summary, the Helm values will be
@@ -95,7 +95,7 @@ ingress-nginx:
       image: k8s.gcr.io/git-sync/git-sync:v3.1.7
       env:
       - name: GIT_SYNC_REPO
-        value: "https://github.com/vishaltak/ingress-nginx-plugins"
+        value: "https://github.com/drndos/ingress-nginx-plugins"
       - name: GIT_SYNC_BRANCH
         value: "master"
       - name: GIT_SYNC_ROOT
@@ -122,7 +122,7 @@ ingress-nginx:
       main-snippet: |
         env ENV_VALUE_1;
         env ENV_VALUE_2;
-      plugins: "hello_world"
+      plugins: "rewrite_forwarding_headers"
 ```
 
 The redacted Deployment is
@@ -140,7 +140,7 @@ spec:
         image: k8s.gcr.io/git-sync/git-sync:v3.1.7
         env:
         - name: GIT_SYNC_REPO
-          value: "https://github.com/vishaltak/ingress-nginx-plugins"
+          value: "https://github.com/drndos/ingress-nginx-plugins"
         - name: GIT_SYNC_BRANCH
           value: "master"
         - name: GIT_SYNC_ROOT
@@ -189,5 +189,5 @@ data:
   main-snippet: |
     env ENV_NAME_1;
     env ENV_NAME_2;
-  plugins: hello_world
+  plugins: rewrite_forwarding_headers
 ```
