@@ -6,7 +6,7 @@ local ngx_log = ngx.log
 local _M = {}
 
 function _M.rewrite()
-  if ngx.var.http_x_forwarded_proto == "https" then
+  if ngx.var.http_x_forwarded_scheme == "https" then
     ngx_log(ngx.ERR, "Setting protocol to https")
     ngx.var.pass_access_scheme = "https"
   end
