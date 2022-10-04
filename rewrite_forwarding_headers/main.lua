@@ -12,6 +12,7 @@ function _M.rewrite()
   if ngx.var.http_x_forwarded_proto == "https" then
     ngx_log(ngx.ERR, "Setting protocol to https")
     ngx.var.pass_access_scheme = "https"
+    ngx.var.pass_port = 443
   end
 end
 
